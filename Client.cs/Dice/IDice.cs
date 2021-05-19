@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Snake_Ladder
+namespace Entities.Dice
 {
     public interface IDice
     {

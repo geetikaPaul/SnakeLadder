@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Snake_Ladder
+namespace Entities.Player
 {
     public enum PlayerStatus
     {
@@ -16,6 +16,7 @@ namespace Snake_Ladder
         public Player()
         {
             position = new Position(0, 0);
+            status = PlayerStatus.PLAYING;
         }
 
         public Player(int x, int y)

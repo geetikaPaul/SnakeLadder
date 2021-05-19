@@ -1,4 +1,7 @@
 ﻿using System;
+using Entities.Dice;
+using Entities.Game;
+using Entities.Player;
 
 namespace Snake_Ladder
 {
@@ -6,9 +9,11 @@ namespace Snake_Ladder
     {
         static void Main(string[] args)
         {
-            Game game = new Two_dimensional(10,10);
+            Game game = new Game(10,10);
             Player player1 = new Player();
             Player player2 = new Player();
+
+            Machine sys = new Two_dimensional(game);
 
             IDice dice = new SingleRandomizedDice();
 
@@ -21,7 +26,7 @@ namespace Snake_Ladder
 
                 if (turn%2==0)
                 {
-                    game.Actions(diceNumber, player1);
+                    sys.Actions(diceNumber, player1);
                     Console.WriteLine("Player 1 at: " + player1.position.X + "," + player1.position.Y);
                     if (player1.status == PlayerStatus.WON)
                     {
@@ -31,7 +36,7 @@ namespace Snake_Ladder
                 }
                 else
                 {
-                    game.Actions(diceNumber, player2);
+                    sys.Actions(diceNumber, player2);
                     Console.WriteLine("Player 2 at: " + player2.position.X + "," + player2.position.Y);
                     if (player2.status == PlayerStatus.WON)
                     {

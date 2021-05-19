@@ -5,4 +5,9 @@
     <TargetFramework>netcoreapp2.1</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\BoardGenerator.cs\BoardGenerator.csproj" />
+    <ProjectReference Include="..\Client.cs\Entities.csproj" />
+  </ItemGroup>
+
 </Project>

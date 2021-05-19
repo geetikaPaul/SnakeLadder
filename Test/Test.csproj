@@ -13,7 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Snake_Ladder\Snake_Ladder.csproj" />
+    <ProjectReference Include="..\Client.cs\Entities.csproj" />
   </ItemGroup>
 
 </Project>
