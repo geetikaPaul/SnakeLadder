@@ -33,6 +33,14 @@ namespace Entities.Game
             };
         }
 
+        public Game(int r, int c, Dictionary<string,Structure> sts)
+        {
+            status = GameStatus.NEW;
+            rows = r;
+            cols = c;
+            structures = sts;
+        }
+
         public void UpdateStatus(GameStatus stat)
         {
             status = stat;

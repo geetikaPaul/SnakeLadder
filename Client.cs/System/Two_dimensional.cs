@@ -1,5 +1,6 @@
 ﻿using Entities.Game;
 using Entities.Player;
+using System;
 
 namespace Snake_Ladder
 {
@@ -60,6 +61,7 @@ namespace Snake_Ladder
             string key = string.Concat(player.position.X, "_", player.position.Y);
             if (game.structures.ContainsKey(key))
             {
+                Console.WriteLine((game.structures[key]).GetType().Name + " encountered");
                 player.position.X = game.structures[key].End[0];
                 player.position.Y = game.structures[key].End[1];
             }

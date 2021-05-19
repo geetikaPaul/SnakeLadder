@@ -1,4 +1,5 @@
 ﻿using System;
+using BoardGenerator;
 using Entities.Dice;
 using Entities.Game;
 using Entities.Player;
@@ -9,7 +10,7 @@ namespace Snake_Ladder
     {
         static void Main(string[] args)
         {
-            Game game = new Game(10,10);
+            Game game = new SimpleBoardGenerator().BoardGenerator();
             Player player1 = new Player();
             Player player2 = new Player();
 
