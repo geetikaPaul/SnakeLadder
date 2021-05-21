@@ -15,6 +15,7 @@
   <ItemGroup>
     <ProjectReference Include="..\BoardGenerator.cs\BoardGenerator.csproj" />
     <ProjectReference Include="..\Client.cs\Entities.csproj" />
+    <ProjectReference Include="..\Utility\Utility.csproj" />
   </ItemGroup>
 
 </Project>

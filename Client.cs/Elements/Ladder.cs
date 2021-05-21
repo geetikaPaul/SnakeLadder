@@ -1,4 +1,4 @@
-﻿namespace Entities.Structures
+﻿namespace Entities.Elements
 {
     public class Ladder : Structure
     {

@@ -1,4 +1,4 @@
-﻿using Entities.Game;
+﻿using Entities.Games;
 using Entities.Player;
 using System;
 
@@ -6,8 +6,8 @@ namespace Snake_Ladder
 {
     public class Two_dimensional : Machine
     {
-        private Game game;
-        public Two_dimensional(Game g)
+        private IGame game;
+        public Two_dimensional(IGame g)
         {
             game = g;
         }

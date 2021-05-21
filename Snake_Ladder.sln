@@ -7,9 +7,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Snake_Ladder", "Snake_Ladde
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Test", "Test\Test.csproj", "{6F9677B4-928F-428B-BC81-6CA586477D46}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BoardGenerator", "BoardGenerator.cs\BoardGenerator.csproj", "{14F6517C-5F5F-4FA9-9F73-9878649D678D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BoardGenerator", "BoardGenerator.cs\BoardGenerator.csproj", "{14F6517C-5F5F-4FA9-9F73-9878649D678D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Entities", "Client.cs\Entities.csproj", "{5CF2DD99-67D1-4D58-9751-3A0DF1C77C5A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Entities", "Client.cs\Entities.csproj", "{5CF2DD99-67D1-4D58-9751-3A0DF1C77C5A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Utility", "Utility\Utility.csproj", "{272A408C-3FCB-43EE-9ABE-DE63278C9697}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{5CF2DD99-67D1-4D58-9751-3A0DF1C77C5A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5CF2DD99-67D1-4D58-9751-3A0DF1C77C5A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5CF2DD99-67D1-4D58-9751-3A0DF1C77C5A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{272A408C-3FCB-43EE-9ABE-DE63278C9697}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{272A408C-3FCB-43EE-9ABE-DE63278C9697}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{272A408C-3FCB-43EE-9ABE-DE63278C9697}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{272A408C-3FCB-43EE-9ABE-DE63278C9697}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,13 +1,13 @@
 using NUnit.Framework;
 using Snake_Ladder;
-using Entities.Game;
+using Entities.Games;
 using Entities.Player;
 
 namespace Tests
 {
     public class TwoDimensionalTests
     {
-        private Game game;
+        private IGame game;
         private Machine sys;
 
         [SetUp]

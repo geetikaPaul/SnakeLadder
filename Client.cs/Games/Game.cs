@@ -1,19 +1,14 @@
 ﻿using System.Collections.Generic;
-using Entities.Structures;
+using Entities.Elements;
 
-namespace Entities.Game
+namespace Entities.Games
 {
     public enum GameStatus
     {
         STARTED, NEW, PENDING, OVER, EXPIRED, RUNNING
     }
-    public class Game
+    public class Game : IGame
     {
-        public int rows { get; private set; }
-        public int cols { get; private set; }
-        public GameStatus status { get; private set; }
-        public Dictionary<string, Structure> structures { get; private set; }
-
         public Game()
         {
             status = GameStatus.NEW;
@@ -41,9 +36,10 @@ namespace Entities.Game
             structures = sts;
         }
 
-        public void UpdateStatus(GameStatus stat)
+        public override void GenerateBoard()
         {
-            status = stat;
+            rows = 10;
+            cols = 10;
         }
 
     }

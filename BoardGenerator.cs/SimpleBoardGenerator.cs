@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Entities.Structures;
-using Entities.Game;
+using Entities.Elements;
+using Entities.Games;
+using Utility;
 
 namespace BoardGenerator
 {
@@ -14,6 +15,8 @@ namespace BoardGenerator
         private int numberOfLadders;
         private int numberOfSnakes;
 
+        private PointGenerator pointGenerator;
+
         private Dictionary<string, Structure> structures;
 
         public SimpleBoardGenerator()
@@ -21,19 +24,20 @@ namespace BoardGenerator
             numberOfLadders = new Random().Next(2, 5);
             numberOfSnakes = new Random().Next(2, 5);
             structures = new Dictionary<string, Structure>();
+            pointGenerator = new PointGenerator(rows, cols);
         }
         protected Structure LadderGenerator(ref HashSet<int> points)
         {
             Random r = new Random();
-            int startPoint = StartPointGenerator(ref points);
-            int endPoint = EndPointGenerator(points, startPoint);
+            int startPoint = pointGenerator.StartPointGenerator(ref points);
+            int endPoint = pointGenerator.EndPointGenerator(points, startPoint);
             return new Ladder(new int[] { r.Next(0, rows - 1), startPoint }, new int[] { r.Next(0, rows - 1), endPoint });          
         }
         protected Structure SnakeGenerator(ref HashSet<int> points)
         {
             Random r = new Random();
-            int endPoint = StartPointGenerator(ref points);
-            int startPoint = EndPointGenerator(points, endPoint);
+            int endPoint = pointGenerator.StartPointGenerator(ref points);
+            int startPoint = pointGenerator.EndPointGenerator(points, endPoint);
             return new Snake(new int[] { r.Next(0, rows - 1), startPoint }, new int[] { r.Next(0, rows - 1), endPoint });
         }
 
@@ -67,26 +71,7 @@ namespace BoardGenerator
             }
         }
 
-        protected int StartPointGenerator(ref HashSet<int> points)
-        {
-            HashSet<int> p = points;
-            List<int> range = Enumerable.Range(0, cols-1).Where(j => !p.Contains(j)).ToList<int>();
-            Random r = new Random();
-            int index = r.Next(0, (cols - 1) - points.Count);
-            int point = range.ElementAt(index);
-            points.Add(point);
-            return point;
-        }
-
-        protected int EndPointGenerator(HashSet<int> points, int startPoint)
-        {
-            Random r = new Random();
-            List<int> range = Enumerable.Range(startPoint + 1, cols - startPoint - 1).Where(j => !points.Contains(j)).ToList<int>();
-            int index = r.Next(0, range.Count);
-            return range.ElementAt(index);
-        }
-
-        public Game BoardGenerator()
+        public IGame generateBoard()
         {
             AddLadders();
             AddSnakes();

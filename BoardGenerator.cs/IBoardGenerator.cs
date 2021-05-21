@@ -1,9 +1,9 @@
-﻿using Entities.Game;
+﻿using Entities.Games;
 
 namespace BoardGenerator
 {
     public interface IBoardGenerator
     {
-        Game BoardGenerator();
+        IGame generateBoard();
     }
 }
