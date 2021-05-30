@@ -1,5 +1,5 @@
 ﻿using Entities.Elements;
-using Entities.Games;
+using Entities.Boards;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -12,7 +12,7 @@ namespace BoardGenerator
         private int numberOfLadders;
         private PointGenerator pointGenerator;
 
-        public BoardWithLadders(IGame g) : base (g)
+        public BoardWithLadders(IBoard g) : base (g)
         {
             SetGameProperties();
             numberOfLadders = new Random().Next(2, 5);

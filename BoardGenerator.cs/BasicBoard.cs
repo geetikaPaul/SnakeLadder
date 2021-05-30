@@ -1,14 +1,14 @@
-﻿using Entities.Games;
+﻿using Entities.Boards;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace BoardGenerator
 {
-    public class BasicBoard : IGame
+    public class BasicBoard : IBoard
     {
-        protected IGame game;
-        public BasicBoard(IGame g)
+        protected IBoard game;
+        public BasicBoard(IBoard g)
         {
             game = g;
         }
@@ -21,7 +21,6 @@ namespace BoardGenerator
         {
             rows = game.rows;
             cols = game.cols;
-            status = game.status;
             structures = game.structures;
         }
     }

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Entities.Elements;
-using Entities.Games;
+using Entities.Boards;
 using Utility;
 
 namespace BoardGenerator
@@ -71,11 +71,11 @@ namespace BoardGenerator
             }
         }
 
-        public IGame generateBoard()
+        public IBoard generateBoard()
         {
             AddLadders();
             AddSnakes();
-            return new Game(rows, cols,structures);
+            return new Board(rows, cols,structures);
         }
     }
 }

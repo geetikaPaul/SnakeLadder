@@ -1,5 +1,5 @@
 ﻿using Entities.Elements;
-using Entities.Games;
+using Entities.Boards;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -12,7 +12,7 @@ namespace BoardGenerator
         private int numberOfSnakes;
         private PointGenerator pointGenerator;
 
-        public BoardWithSnakes(IGame g) : base (g)
+        public BoardWithSnakes(IBoard g) : base (g)
         {
             SetGameProperties();
             numberOfSnakes = new Random().Next(2, 5);

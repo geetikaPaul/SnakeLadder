@@ -1,19 +1,16 @@
 ﻿using Entities.Elements;
 using System.Collections.Generic;
 
-namespace Entities.Games
+namespace Entities.Boards
 {
-    public abstract class IGame
+    public abstract class IBoard
     {
         public int rows { get; protected set; }
         public int cols { get; protected set; }
-        public GameStatus status { get; protected set; }
+
+        //ideally structures should be property of the BasicBoard since it's decoration for a board
         public Dictionary<string, Structure> structures { get; protected set; }
         public abstract void GenerateBoard();
-        public void UpdateStatus(GameStatus stat)
-        {
-            status = stat;
-        }
 
         public void SetStructures(Dictionary<string, Structure> s)
         {

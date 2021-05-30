@@ -1,20 +1,20 @@
 using NUnit.Framework;
 using Snake_Ladder;
-using Entities.Games;
+using Entities.Boards;
 using Entities.Player;
+using System.Collections.Generic;
+using Entities.Dice;
 
-namespace Tests
+namespace Test
 {
     public class TwoDimensionalTests
     {
-        private IGame game;
-        private Machine sys;
+        private Game sys;
 
         [SetUp]
         public void Setup()
         {
-            game = new Game();
-            sys = new Two_dimensional(game);
+            sys = new Two_dimensional(new Board(), new List<Player>() { new Player(), new Player() }, new SingleRandomizedDice());
         }
 
         [Test]
@@ -67,15 +67,14 @@ namespace Tests
             Assert.AreEqual(4, player.position.Y);
         }
 
+        
         [Test]
-        public void OddRowsGameOver()
+        public void OddRowsboardOver()
         {
-            Player player = new Player(3, 4);
-            sys.Actions(1, player);
-
-            Assert.AreEqual(4, player.position.X);
-            Assert.AreEqual(4, player.position.Y);
-            Assert.AreEqual(GameStatus.OVER, game.status);
+            Player player = new Player(4, 4);
+            sys.UpdateStatus(player);
+            
+            Assert.AreEqual(GameStatus.OVER, sys.status);
         }
         
         [Test]
@@ -84,7 +83,41 @@ namespace Tests
             Player player = new Player(4, 4);
             sys.UpdateStatus(player);
             Assert.AreEqual(PlayerStatus.WON, player.status);
-            Assert.AreEqual(GameStatus.OVER, game.status);
+            Assert.AreEqual(GameStatus.OVER, sys.status);
+        }
+
+        [Test]
+        public void TestPlayerCountValidationWhenPlayerCountLess()
+        {
+            sys = new Two_dimensional(new Board(), new List<Player>(), new SingleRandomizedDice());
+            Assert.AreEqual(null, sys.board);
+        }
+
+        [Test]
+        public void TestPlayerCountValidationWhenPlayerCountMore()
+        {
+            sys = new Two_dimensional(new Board(), 
+                new List<Player>() { new Player(), new Player(), new Player(), new Player(), new Player() },
+                new SingleRandomizedDice());
+            Assert.AreEqual(null, sys.board);
+        }
+
+        [Test]
+        public void TestPlayerCountValidationWhenPlayerCountCorrect()
+        {
+            sys = new Two_dimensional(new Board(),
+                new List<Player>() { new Player(), new Player() },
+                new SingleRandomizedDice());
+            Assert.AreNotEqual(null, sys.board);
+        }
+
+        [Test]
+        public void TestPlayerTurn()
+        {
+            sys = new Two_dimensional(new Board(), new List<Player>() { new Player(), new Player() }, new SingleRandomizedDice());
+            Assert.AreEqual(sys.players[0], sys.GetPlayerWhoseTurn());
+            Assert.AreEqual(sys.players[1], sys.GetPlayerWhoseTurn());
+            Assert.AreEqual(sys.players[0], sys.GetPlayerWhoseTurn());
         }
     }
 }

@@ -1,32 +1,30 @@
 ﻿using NUnit.Framework;
 using Snake_Ladder;
-using Entities.Games;
+using Entities.Boards;
 using Entities.Player;
+using System.Collections.Generic;
+using Entities.Dice;
 
 namespace Test
 {
     class TwoDimensionalCustomGridTest
     {
-        private IGame game;
-        private Machine sys;
+        private Game sys;
 
         [SetUp]
         public void Setup()
         {
-            game = new Game(10,10);
-            sys = new Two_dimensional(game);
+            sys = new Two_dimensional(new Board(10, 10), new List<Player>() { new Player(), new Player() }, new SingleRandomizedDice());
         }
 
-
+        
         [Test]
-        public void EvenRowsGameOver()
+        public void EvenRowsboardOver()
         {
-            Player player = new Player(1, 9);
-            sys.Actions(1, player);
-
-            Assert.AreEqual(0, player.position.X);
-            Assert.AreEqual(9, player.position.Y);
-            Assert.AreEqual(GameStatus.OVER, game.status);
+            Player player = new Player(0, 9);
+            sys.UpdateStatus(player);
+            
+            Assert.AreEqual(GameStatus.OVER, sys.status);
         }
 
 
@@ -36,7 +34,7 @@ namespace Test
             Player player = new Player(0, 9);
             sys.UpdateStatus(player);
             Assert.AreEqual(PlayerStatus.WON, player.status);
-            Assert.AreEqual(GameStatus.OVER, game.status);
+            Assert.AreEqual(GameStatus.OVER, sys.status);
         }
 
         [Test]

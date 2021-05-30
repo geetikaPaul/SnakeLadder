@@ -1,6 +1,6 @@
 ﻿using NUnit.Framework;
 using Snake_Ladder;
-using Entities.Games;
+using Entities.Boards;
 using Entities.Player;
 using BoardGenerator;
 using System.Collections.Generic;
@@ -11,6 +11,7 @@ namespace Test
     public class SimpleBoardGeneratorTest : SimpleBoardGenerator
     {
         [Test]
+        [Ignore("Obsolete method of creating game")]
         public void TestSnakeGenerator()
         {
             HashSet<int> points = new HashSet<int>();
@@ -19,6 +20,7 @@ namespace Test
         }
 
         [Test]
+        [Ignore("Obsolete method of creating game")]
         public void TestLadderGenerator()
         {
             HashSet<int> points = new HashSet<int>();

@@ -1,8 +1,9 @@
 ﻿using System;
 using BoardGenerator;
 using Entities.Dice;
-using Entities.Games;
+using Entities.Boards;
 using Entities.Player;
+using System.Collections.Generic;
 
 namespace Snake_Ladder
 {
@@ -10,48 +11,24 @@ namespace Snake_Ladder
     {
         static void Main(string[] args)
         {
-            IGame game = new BoardWithSnakes(new BoardWithLadders(new Game()));
-            game.GenerateBoard();
-            
+            IBoard board = new BoardWithSnakes(new BoardWithLadders(new Board()));
+            board.GenerateBoard();
 
-            Player player1 = new Player();
-            Player player2 = new Player();
-
-            Machine sys = new Two_dimensional(game);
+            IList<Player> players = new List<Player> { new Player(), new Player() };
 
             IDice dice = new SingleRandomizedDice();
 
-            int turn = 0;
+            Game game = new Two_dimensional(board, players, dice);
 
             do
             {
-                int diceNumber = dice.RollDice();
-                Console.WriteLine(diceNumber);
+                Player p = game.GetPlayerWhoseTurn();
+                game.Actions(p);
+                Console.WriteLine(string.Format("Player {0} at: {1},{2}", p.Id, p.position.X, p.position.Y));
+                if (p.status == PlayerStatus.WON)
+                    Console.WriteLine(string.Format("Player {0} won", p.Id));
 
-                if (turn%2==0)
-                {
-                    sys.Actions(diceNumber, player1);
-                    Console.WriteLine("Player 1 at: " + player1.position.X + "," + player1.position.Y);
-                    if (player1.status == PlayerStatus.WON)
-                    {
-                        Console.WriteLine("Player 1 won");
-                        break;
-                    }
-                }
-                else
-                {
-                    sys.Actions(diceNumber, player2);
-                    Console.WriteLine("Player 2 at: " + player2.position.X + "," + player2.position.Y);
-                    if (player2.status == PlayerStatus.WON)
-                    {
-                        Console.WriteLine("Player 2 won");
-                        break;
-                    }
-                }
-
-                turn++;
-
-            } while (game.status!= GameStatus.EXPIRED);
+            } while (game.status!= GameStatus.EXPIRED && game.status!= GameStatus.OVER);
 
             Console.Read();
         }

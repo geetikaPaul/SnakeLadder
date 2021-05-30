@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Entities.Player
 {
@@ -10,11 +8,13 @@ namespace Entities.Player
     }
     public class Player
     {
+        public string Id { get; private set; }
         public Position position;
         public PlayerStatus status { get; private set; }
 
         public Player()
         {
+            Id = Guid.NewGuid().ToString();
             position = new Position(0, 0);
             status = PlayerStatus.PLAYING;
         }
